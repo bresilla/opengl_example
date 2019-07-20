@@ -50,7 +50,7 @@ snakeclass::snakeclass(){
     {
         move(snake[i].y,snake[i].x);
         addch(partchar);
-    }   
+    }
     move(maxheigh-1,0);
     printw("%d",points);
     move(food.y,food.x);
@@ -73,12 +73,11 @@ void snakeclass::putfood(){
                 continue;
             }
         }
-        
         if (tmpx>=maxwidth-2 || tmpy>=maxheigh-3) {
             continue;
         }
         food.x=tmpx;
-        food.y=tmpy;    
+        food.y=tmpy;
         break;
     }
     move(food.y,food.x);
@@ -87,7 +86,6 @@ void snakeclass::putfood(){
 };
 
 bool snakeclass::collision(){
-    
     if (snake[0].x == 0 || snake[0].x == maxwidth-1 || snake[0].y == 0 || snake[0].y==maxheigh-2){
         return true;
     }
@@ -117,17 +115,16 @@ bool snakeclass::collision(){
 
 void snakeclass::movesnake(){
     int tmp = getch();
-    
     switch (tmp){
         case KEY_LEFT:
             if (direction!='r'){direction='l';}
             break;
         case KEY_UP:
             if (direction!='d'){direction='u';}
-            break;   
+            break;
         case KEY_DOWN:
             if (direction!='u'){direction='d';}
-            break;   
+            break;
         case KEY_RIGHT:
             if (direction!='l'){direction='r';}
             break;
@@ -135,7 +132,7 @@ void snakeclass::movesnake(){
             direction='q';
             break;
     }
-    
+
     if (!get) {
         move(snake[snake.size()-1].y,snake[snake.size()-1].x);
         addch(' ');
@@ -143,7 +140,6 @@ void snakeclass::movesnake(){
         snake.pop_back();
     }
 
-    
     if (direction=='l') {
         snake.insert(snake.begin(),snakepart(snake[0].x-1,snake[0].y));
     }
@@ -171,7 +167,5 @@ void snakeclass::start(){
         if (direction=='q') {break;}
         usleep(del);
     }
-    
-    
 }
 
